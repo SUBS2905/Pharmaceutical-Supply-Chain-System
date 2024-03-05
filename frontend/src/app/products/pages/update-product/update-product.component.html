@@ -1,0 +1,39 @@
+<section class="container d-flex justify-content-center align-items-center w-100 h-100">
+    <div class="wrapper py-4 d-flex flex-column align-items-center justify-content-around">
+        <h3 class="logo">PharmaChain</h3>
+        <h5>Update Product</h5>
+        <form class="fields w-75 d-flex flex-column gap-3" [formGroup]="updateProductForm" (submit)="onSubmit()">
+            <input type="text" placeholder="Product ID" formControlName="productID" class="p-2">
+            <input type="text" placeholder="Product Name" formControlName="productName" class="p-2">
+            <textarea placeholder="Description" formControlName="description" class="p-2"></textarea>
+            <select class="form-select" formControlName="formulation" class="p-2">
+                <option value="">Select Formulation</option>
+                <option value="Gel/Ointment">Gel/Ointment</option>
+                <option value="Tablet">Tablet</option>
+                <option value="Capsule">Capsule</option>
+                <option value="Syrup">Syrup</option>
+                <option value="Injection">Injection</option>
+            </select>
+            <input type="text" placeholder="Ingredients (comma-separated)" formControlName="ingredients" class="p-2">
+            <div class="d-flex flex-column">
+                <label>Expiration Date: </label>
+                <input type="date" formControlName="expirationDate">
+            </div>
+            <div class="compliance-section d-flex gap-3 align-items-center">
+                <h6>Compliance:</h6>
+                <div>
+                    <input type="checkbox" formControlName="compliance.fda" id="fdaCompliance"> &nbsp;
+                    <label for="fdaCompliance">FDA</label>
+                </div>
+                <div>
+                    <input type="checkbox" formControlName="compliance.ema" id="emaCompliance"> &nbsp;
+                    <label for="emaCompliance">EMA</label>
+                </div>
+            </div>
+            <p *ngIf="updateProductFailed" class="error align-self-center text-danger">Product Addition Failed</p>
+            <div class="align-self-end">
+                <button type="submit" class="p-2">Update</button>
+            </div>
+        </form>
+    </div>
+</section>

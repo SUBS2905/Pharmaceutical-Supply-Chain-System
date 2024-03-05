@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="container my-5">
+    <div class="title d-flex align-items-center justify-content-between">
+        <h3>Orders</h3>
+    </div>
+    <div class="row">
+        <div *ngFor="let order of orders" class="col-md-6 my-3">
+            <div class="card" style="width: 100%;">
+                <div class="card-body d-flex flex-column gap-2">
+                    <h5 class="card-title">{{order.productID}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Order ID: <span
+                            class="text-black">{{order.orderID}}</span></h6>
+                    <small class="card-text text-muted">Customer ID: <span
+                            class="text-black">{{order.customerID}}</span></small>
+                    <small class="card-text text-muted">Quantity: <span
+                            class="text-black">{{order.quantity}}</span></small>
+                    <h6 class="card-subtitle mb-2 text-muted">Order Status: <span
+                            class="text-black">{{order.orderStatus}}</span></h6>
+                    <div class="d-flex justify-content-end gap-3">
+                        <button class="btn btn-primary" (click)="updateStatus(order.orderID)">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

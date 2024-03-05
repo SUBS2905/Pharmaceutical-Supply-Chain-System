@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+<div class="container my-5">
+    <div class="title d-flex align-items-center justify-content-between">
+        <h3>Inventories</h3>
+        <button *ngIf=" userRole === 'admin' || userRole === 'manufacturer' || userRole === 'distributor' "
+            class="btn btn-primary" routerLink="/inventory/add">Add New Inventory</button>
+    </div>
+    <div class="row">
+        <div *ngFor="let inventory of inventories" class="col-md-4 my-3">
+            <div class="card" style="width: 100%;">
+                <div class="card-body" [style.background-color]="getCardColour(inventory.level)">
+                    <h5 class="card-title">{{inventory.productDetails.productName}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Product ID: <span
+                            class="text-black">{{inventory.productDetails.productID}}</span>
+                    </h6>
+                    <small class="card-text text-muted">Batch Number: <span
+                            class="text-black">{{inventory.batchNumber}}</span></small><br>
+                    <small class="card-text text-muted">Serial Number: <span
+                            class="text-black">{{inventory.serialNumber}}</span></small><br>
+                    <small class="card-text text-muted">Quantity: <span
+                            class="text-black">{{inventory.quantity}}</span></small><br>
+                    <small class="card-text text-muted"
+                        [style.background-color]="getExpiryColour(inventory.productDetails.expirationDate)">Expiration
+                        Date:
+                        <span class="text-black">{{extractDate(inventory.productDetails.expirationDate)}}</span>
+                    </small><br>
+                    <small class="card-text text-muted">Location: <span
+                            class="text-black">{{inventory.location}}</span></small><br>
+                    <small class="card-text text-muted">Level: <span
+                            class="text-black">{{inventory.level}}</span></small><br>
+                    <div class="d-flex justify-content-end gap-3 py-2">
+                        <button *ngIf=" userRole === 'admin' || userRole === 'retailer' " class="btn btn-success"
+                            (click)="orderProduct(inventory.productDetails.productID)">Order</button>
+                        <button
+                            *ngIf=" userRole === 'admin' || userRole === 'manufacturer' || userRole === 'distributor' "
+                            class="btn btn-primary" routerLink="/inventory/update">Update</button>
+                        <button
+                            *ngIf=" userRole === 'admin' || userRole === 'manufacturer' || userRole === 'distributor' "
+                            class="btn btn-danger" (click)="onDelete(inventory.batchNumber)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

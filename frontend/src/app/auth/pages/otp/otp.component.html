@@ -1,0 +1,13 @@
+<section class="container d-flex justify-content-center align-items-center w-100 h-100">
+    <div class="wrapper py-3 h-75 d-flex flex-column align-items-center justify-content-around">
+        <h3 class="logo">PharmaChain</h3>
+        <h5>Enter OTP</h5>
+        <form class="fields w-75 d-flex flex-column gap-3" [formGroup]="otpForm" (submit)="onSubmit()">
+            <input type="text" placeholder="Enter OTP received on email" class="p-2" formControlName="otp">
+            <p *ngIf="loginFailed" class="error align-self-center text-danger">Incorrect Credentials</p>
+            <div class="align-self-end">
+                <button type="submit" class="p-2">Verify</button>
+            </div>
+        </form>
+    </div>
+</section>

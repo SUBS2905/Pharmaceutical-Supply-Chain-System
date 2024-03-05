@@ -1,0 +1,18 @@
+<section class="container d-flex justify-content-center align-items-center w-100 h-100">
+    <div class="wrapper py-4 d-flex flex-column align-items-center justify-content-around">
+        <h3 class="logo">PharmaChain</h3>
+        <h5>Update Order Status</h5>
+        <form class="fields w-100 p-1 d-flex flex-column gap-3" [formGroup]="updateStatusForm">
+            <p class="align-self-center">Order ID:&nbsp;<span>{{orderId}}</span></p>
+            <select class="form-select" formControlName="newStatus">
+                <option value="placed">Placed</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+            </select>
+            <p *ngIf="updateStatusFailed" class="error align-self-center text-danger">Status updation Failed</p>
+            <div class="align-self-end w-50">
+                <button type="submit" class="p-2" (click)="onSubmit()">Update Status</button>
+            </div>
+        </form>
+    </div>
+</section>

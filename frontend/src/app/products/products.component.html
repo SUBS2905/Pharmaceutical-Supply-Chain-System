@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+<div class="container my-5">
+    <div class="title d-flex align-items-center justify-content-between">
+        <h3>Products</h3>
+        <button class="btn btn-primary" routerLink="/products/add">Add New Product</button>
+    </div>
+    <div class="row">
+        <div *ngFor="let product of products" class="col-md-4 my-3">
+            <div class="card" style="width: 100%;">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.productName}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">ID: <span class="text-black">{{product.productID}}</span>
+                    </h6>
+                    <small class="card-text text-muted">Description: <span
+                            class="text-black">{{product.description}}</span></small><br>
+                    <small class="card-text text-muted">Formulation: <span
+                            class="text-black">{{product.formulation}}</span></small><br>
+                    <small class="card-text text-muted">Ingredients:</small><br>
+                    <small><span *ngFor="let ing of product.ingredients">{{ing}}&nbsp;</span></small><br>
+                    <p class="card-text">Compliance:
+                        <small *ngIf="product.compliance.fda" class="text-success">FDA</small>&nbsp;
+                        <small *ngIf="!product.compliance.fda" class="text-danger">FDA</small>&nbsp;
+                        <small *ngIf="product.compliance.ema" class="text-success">EMA</small>
+                        <small *ngIf="!product.compliance.ema" class="text-danger">EMA</small>
+                    </p>
+                    <div class="d-flex justify-content-end gap-3">
+                        <button class="btn btn-primary" routerLink="/products/update">Update</button>
+                        <button class="btn btn-danger" (click)="onDelete(product.productID)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

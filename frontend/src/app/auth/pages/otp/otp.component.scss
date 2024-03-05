@@ -1,0 +1,43 @@
+.wrapper {
+    width: 35%;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.logo {
+    font-family: Madimi One, sans-serif;
+}
+
+.fields input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+
+.fields input:focus-within {
+    border-bottom: 2px solid black;
+}
+
+.fields div:last-child {
+    width: 30%;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    font-size: 0.9rem;
+}
+
+.fields button {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: #0D6EFD;
+    color: #fff;
+}

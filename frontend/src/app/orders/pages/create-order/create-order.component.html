@@ -1,0 +1,14 @@
+<section class="container d-flex justify-content-center align-items-center w-100 h-100">
+    <div class="wrapper py-4 d-flex flex-column align-items-center justify-content-around">
+        <h3 class="logo">PharmaChain</h3>
+        <h5>Place Order</h5>
+        <form class="fields w-75 d-flex flex-column gap-3" [formGroup]="createOrderForm" (submit)="onSubmit()">
+            <p class="align-self-center">Product ID:&nbsp;<span>{{productID}}</span></p>
+            <input type="number" placeholder="Enter Quantity" formControlName="quantity" class="p-2">
+            <p *ngIf="createOrderFailed" class="error align-self-center text-danger">Order creation Failed</p>
+            <div class="align-self-end w-50">
+                <button type="submit" class="p-2">Place Order</button>
+            </div>
+        </form>
+    </div>
+</section>

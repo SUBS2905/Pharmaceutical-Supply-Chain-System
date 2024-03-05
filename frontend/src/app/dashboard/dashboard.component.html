@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+<div class="container my-5 d-flex flex-column gap-3">
+    <h6>Welcome, <span class="text-primary">{{userData.email}}</span></h6>
+    <h3 class="title">Dashboard</h3>
+    <div
+        *ngIf="userData.role === 'admin' || userData.role === 'distributor' || userData.role === 'manufacturer' || userData.role === 'retailer'">
+        <div class="d-flex flex-column gap-2">
+            <h4>Inventory Levels</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Batch Number</th>
+                        <th>Product ID</th>
+                        <th>Inventory Level</th>
+                        <th>Expiration Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let inventory of inventoryData">
+                        <td>{{inventory.batchNumber}}</td>
+                        <td>{{inventory.productDetails.productID}}</td>
+                        <td [style.color]="getInventoryColour(inventory.level)">{{inventory.level}}</td>
+                        <td>{{extractDate(inventory.productDetails.expirationDate)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="userData.role === 'admin' || userData.role === 'distributor'" class="my-2">
+        <div class="d-flex flex-column gap-2">
+            <h4>Pending Orders</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product ID</th>
+                        <th>Order Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of orderData">
+                        <td>{{order.orderID}}</td>
+                        <td>{{order.productID}}</td>
+                        <td><strong>{{order.orderStatus}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div *ngIf="userData.role === 'admin' || userData.role === 'retailer'" class="my-2">
+        <div class="d-flex flex-column gap-2">
+            <h4>Your Orders</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Product ID</th>
+                        <th>Order Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let order of customerOrderData">
+                        <td>{{order.orderID}}</td>
+                        <td>{{order.productID}}</td>
+                        <td><strong>{{order.orderStatus}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="userData.role === 'admin' || userData.role === 'regulatoryAuthority'" class="my-2">
+        <div class="d-flex flex-column gap-2">
+            <h4>Product Repository</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Formulation</th>
+                        <th>Compliance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of productData">
+                        <td>{{product.productID}}</td>
+                        <td>{{product.productName}}</td>
+                        <td>{{product.formulation}}</td>
+                        <td><span *ngIf="product.compliance.fda">FDA &nbsp;&nbsp;</span><span
+                                *ngIf="product.compliance.ema">EMA</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
