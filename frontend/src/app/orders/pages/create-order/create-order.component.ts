@@ -55,17 +55,6 @@ export class CreateOrderComponent implements OnInit {
     }
   }
 
-  onFailed(): void {
-    this.orderService.error$.subscribe({
-      next: (err) => {
-        this.createOrderFailed = err;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
-
   getUserDetails(): void {
     this.authService.getUserById().subscribe({
       next: (user) => {

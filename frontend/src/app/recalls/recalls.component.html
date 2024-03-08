@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<div class="container my-5">
+    <div class="title d-flex align-items-center justify-content-between">
+        <h3>Recalled Products</h3>
+    </div>
+    <div class="row">
+        <div *ngFor="let product of recalledProducts" class="col-12 my-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.recalledProduct.productID}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Recall ID: <span
+                            class="text-black">{{product.recallID}}</span>
+                    </h6>
+                    <small class="card-text text-muted">Reason: <span
+                            class="text-black">{{product.reason}}</span></small><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

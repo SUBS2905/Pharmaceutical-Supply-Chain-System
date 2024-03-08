@@ -18,7 +18,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, AMRGuard],
   },
   {
-    path: 'update',
+    path: 'update/:productId',
     component: UpdateProductComponent,
     canActivate: [AuthGuard, AMRGuard],
   },

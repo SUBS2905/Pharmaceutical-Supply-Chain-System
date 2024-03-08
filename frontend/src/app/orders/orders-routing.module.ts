@@ -6,9 +6,10 @@ import { CreateOrderComponent } from './pages/create-order/create-order.componen
 import { ARetGuard } from 'src/shared/guards/ARet.guard';
 import { UpdateStatusComponent } from './pages/update-status/update-status.component';
 import { ADGuard } from 'src/shared/guards/AD.guard';
+import { ADRetGuard } from 'src/shared/guards/ADRet.guard';
 
 const routes: Routes = [
-  { path: '', component: OrdersComponent, canActivate: [AuthGuard, ADGuard] },
+  { path: '', component: OrdersComponent, canActivate: [AuthGuard, ADRetGuard] },
   {
     path: 'create/:productID',
     component: CreateOrderComponent,

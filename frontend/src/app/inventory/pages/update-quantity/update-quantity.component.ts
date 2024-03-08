@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { InventoryService } from 'src/shared/services/inventory.service';
 
 @Component({
@@ -10,19 +11,26 @@ import { InventoryService } from 'src/shared/services/inventory.service';
 export class UpdateQuantityComponent implements OnInit {
   updateQuantityForm: FormGroup;
   updateQuantityFailed = false;
+  batchNumber: string;
 
   constructor(
     private fb: FormBuilder,
-    private inventoryService: InventoryService
+    private inventoryService: InventoryService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
+    this.route.params.subscribe({
+      next: (params) => {
+        this.batchNumber = params['batchNo'];
+      },
+    });
   }
 
   initializeForm(): void {
     this.updateQuantityForm = this.fb.group({
-      batchNumber: ['', Validators.required],
+      // batchNumber: ['', Validators.required],
       quantityAdded: [],
       quantitySubtracted: [],
     });
@@ -31,11 +39,13 @@ export class UpdateQuantityComponent implements OnInit {
   onSubmit(): void {
     if (this.updateQuantityForm.valid) {
       const formValue = this.updateQuantityForm.value;
+
+      formValue.batchNumber = this.batchNumber;
       if (formValue.quantityAdded === null) formValue.quantityAdded = 0;
       if (formValue.quantitySubtracted === null)
         formValue.quantitySubtracted = 0;
 
-      console.log(formValue);
+      // console.log(formValue);
 
       this.inventoryService.updateQuantity(
         formValue.batchNumber,

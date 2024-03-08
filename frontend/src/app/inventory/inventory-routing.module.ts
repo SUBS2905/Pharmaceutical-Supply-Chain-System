@@ -22,7 +22,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, AMDGuard],
   },
   {
-    path: 'update',
+    path: 'update/:batchNo',
     component: UpdateQuantityComponent,
     canActivate: [AuthGuard, AMDGuard],
   },

@@ -9,7 +9,6 @@ import { AuthService } from 'src/shared/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  registrationFailed = false;
   showPassword = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
@@ -28,19 +27,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     // console.log(this.registerForm.value);
-    this.authService.registerUser(
-      this.registerForm.value.email,
-      this.registerForm.value.role,
-      this.registerForm.value.password
-    );
-  }
-
-  onFailed(): void {
-    this.authService.errorSubject.subscribe({
-      next: (err) => {
-        this.registrationFailed = err;
-      },
-      error: (err) => console.log(err),
-    });
+    if (this.registerForm.valid) {
+      this.authService.registerUser(
+        this.registerForm.value.email,
+        this.registerForm.value.role,
+        this.registerForm.value.password
+      );
+    } else {
+      console.log('Invalid Form');
+    }
   }
 }

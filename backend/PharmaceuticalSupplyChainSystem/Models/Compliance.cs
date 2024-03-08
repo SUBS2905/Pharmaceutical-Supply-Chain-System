@@ -1,8 +1,11 @@
-﻿namespace PharmaceuticalSupplyChainSystem.Models
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
+namespace PharmaceuticalSupplyChainSystem.Models
 {
     public class Compliance
     {
-        public bool FDA { get; set; }
-        public bool EMA { get; set; }
+        public Boolean FDA { get; set; }
+        public Boolean EMA { get; set; }
     }
 }

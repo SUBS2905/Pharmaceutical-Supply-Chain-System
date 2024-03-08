@@ -5,7 +5,6 @@
         <form class="fields w-75 d-flex flex-column gap-3" [formGroup]="registerForm" (submit)="onSubmit()">
             <input type="email" placeholder="Enter Email" class="p-2" formControlName="email">
             <select class="form-select" name="role" formControlName="role">
-                <option value="admin">Admin</option>
                 <option value="manufacturer">Manufacturer</option>
                 <option value="distributor">Distributor</option>
                 <option value="retailer">Retailer</option>
@@ -21,7 +20,6 @@
                 </div>
                 <a routerLink="/auth/login"><small>Already registered?</small></a>
             </div>
-            <p *ngIf="registrationFailed" class="error align-self-center text-danger">Something went wrong!</p>
             <div class="align-self-end">
                 <button type="submit" class="p-2">Register</button>
             </div>

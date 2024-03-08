@@ -8,19 +8,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
                 </li>
                 <li *ngIf=" userRole === 'admin' || userRole === 'manufacturer' || userRole === 'regulatoryAuthority' "
                     class="nav-item">
-                    <a class="nav-link" routerLink="/products">Products</a>
+                    <a class="nav-link" routerLink="/products" routerLinkActive="active">Products</a>
                 </li>
                 <li *ngIf=" userRole === 'admin' || userRole === 'manufacturer' || userRole === 'distributor' || userRole === 'retailer' "
                     class="nav-item">
-                    <a class="nav-link" routerLink="/inventory">Inventory</a>
+                    <a class="nav-link" routerLink="/inventory" routerLinkActive="active">Inventory</a>
+                </li>
+                <li *ngIf=" userRole === 'admin' || userRole === 'distributor' || userRole === 'retailer' " class="nav-item">
+                    <a class="nav-link" routerLink="/orders" routerLinkActive="active">Orders</a>
                 </li>
                 <li *ngIf=" userRole === 'admin' || userRole === 'distributor' " class="nav-item">
-                    <a class="nav-link" routerLink="/orders">Orders</a>
+                    <a class="nav-link" routerLink="/shipments" routerLinkActive="active">Shipments</a>
+                </li>
+                <li *ngIf=" userRole === 'admin' || userRole === 'regulatoryAuthority' " class="nav-item">
+                    <a class="nav-link" routerLink="/recalls" routerLinkActive="active">Recalls</a>
                 </li>
             </ul>
         </div>

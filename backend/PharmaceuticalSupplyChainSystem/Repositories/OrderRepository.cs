@@ -36,6 +36,25 @@ namespace PharmaceuticalSupplyChainSystem.Repositories
                 throw new Exception(ex.ToString());
             }
         }
+
+        public async Task<Order> getOrderById(string orderId)
+        {
+            try
+            {
+                var mongoURI = _config["ConnectionStrings:MONGO_URI"];
+                var client = new MongoClient(mongoURI);
+                var db = client.GetDatabase("PharmaceuticalSupplyChain");
+                var collection = db.GetCollection<Order>("orders");
+
+                var order = await collection.Find(o => o.OrderID == orderId).FirstOrDefaultAsync<Order>();
+
+                return order;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
         public async Task<Order> addOrder(Order order)
         {
             try

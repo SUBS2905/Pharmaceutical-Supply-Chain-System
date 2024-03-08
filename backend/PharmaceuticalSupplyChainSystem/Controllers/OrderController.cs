@@ -35,9 +35,30 @@ namespace PharmaceuticalSupplyChainSystem.Controllers
             }
         }
 
+        [Authorize(Roles ="admin,distributor")]
+        [HttpPost("getByOId")]
+        public async Task<IActionResult> GetOrderByOrderId([FromBody] JsonElement data)
+        {
+            try
+            {
+                string orderId = data.GetProperty("orderId").ToString();
+
+                var order = await _orderService.getOrderByOrderId(orderId);
+
+                if (order == null)
+                    return NotFound("Order not found");
+
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [Authorize(Roles ="admin,retailer")]
         [HttpPost("getByCId")]
-        public async Task<IActionResult> GetOrdersById([FromBody] JsonElement data)
+        public async Task<IActionResult> GetOrdersByCustomerId([FromBody] JsonElement data)
         {
             try
             {

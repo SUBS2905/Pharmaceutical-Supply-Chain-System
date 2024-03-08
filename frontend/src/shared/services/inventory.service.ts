@@ -5,7 +5,6 @@ import Inventory from '../models/Inventory';
 import { BehaviorSubject } from 'rxjs';
 import AddInventoryRequest from '../models/AddInventoryRequest';
 import { Router } from '@angular/router';
-import { OrderService } from './order.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +24,6 @@ export class InventoryService {
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
-    private orderService: OrderService,
     private router: Router
   ) {}
 

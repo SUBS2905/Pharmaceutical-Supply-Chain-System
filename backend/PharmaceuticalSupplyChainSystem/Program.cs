@@ -47,6 +47,10 @@ builder.Services.AddScoped<IInventoryRepository, InventoryRepository>();
 builder.Services.AddScoped<InventoryService>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
+builder.Services.AddScoped<ShipmentService>();
+builder.Services.AddScoped<IRecallRepository, RecallRepository>();
+builder.Services.AddScoped<RecallService>();
 
 var app = builder.Build();
 

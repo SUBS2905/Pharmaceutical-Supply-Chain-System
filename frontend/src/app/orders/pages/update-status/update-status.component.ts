@@ -10,7 +10,6 @@ import { OrderService } from 'src/shared/services/order.service';
 })
 export class UpdateStatusComponent implements OnInit {
   updateStatusForm: FormGroup;
-  updateStatusFailed = false;
   orderId: string;
 
   constructor(
@@ -48,16 +47,5 @@ export class UpdateStatusComponent implements OnInit {
     } else {
       console.log('Form is invalid');
     }
-  }
-
-  onFailed(): void {
-    this.orderService.error$.subscribe({
-      next: (err) => {
-        this.updateStatusFailed = err;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
   }
 }

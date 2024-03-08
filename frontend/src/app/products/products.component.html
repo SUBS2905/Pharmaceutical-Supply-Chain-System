@@ -24,8 +24,9 @@
                         <small *ngIf="!product.compliance.ema" class="text-danger">EMA</small>
                     </p>
                     <div class="d-flex justify-content-end gap-3">
-                        <button class="btn btn-primary" routerLink="/products/update">Update</button>
+                        <button class="btn btn-primary" (click)="onUpdate(product.productID)">Update</button>
                         <button class="btn btn-danger" (click)="onDelete(product.productID)">Delete</button>
+                        <button *ngIf=" userRole === 'admin' || userRole === 'regulatoryAuthority' " class="btn btn-warning" (click)="onRecall(product.productID)">Recall</button>
                     </div>
                 </div>
             </div>

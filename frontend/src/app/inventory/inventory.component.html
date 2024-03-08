@@ -33,7 +33,7 @@
                             (click)="orderProduct(inventory.productDetails.productID)">Order</button>
                         <button
                             *ngIf=" userRole === 'admin' || userRole === 'manufacturer' || userRole === 'distributor' "
-                            class="btn btn-primary" routerLink="/inventory/update">Update</button>
+                            class="btn btn-primary" (click)="onUpdate(inventory.batchNumber)">Update</button>
                         <button
                             *ngIf=" userRole === 'admin' || userRole === 'manufacturer' || userRole === 'distributor' "
                             class="btn btn-danger" (click)="onDelete(inventory.batchNumber)">Delete</button>

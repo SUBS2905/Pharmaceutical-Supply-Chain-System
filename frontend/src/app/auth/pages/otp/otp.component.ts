@@ -13,7 +13,7 @@ export class OtpComponent implements OnInit {
   otpForm: FormGroup;
   userData: User;
   token: string;
-  loginFailed = false;
+  // loginFailed = false;
 
   constructor(
     private fb: FormBuilder,
@@ -23,7 +23,7 @@ export class OtpComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.isFailed();
+    // this.isFailed();
     this.subscribeToUserData();
   }
 
@@ -42,13 +42,13 @@ export class OtpComponent implements OnInit {
     });
   }
 
-  isFailed(): void {
-    this.authService.errorSubject.subscribe({
-      next: (err) => {
-        this.loginFailed = err;
-      },
-    });
-  }
+  // isFailed(): void {
+  //   this.authService.errorSubject.subscribe({
+  //     next: (err) => {
+  //       this.loginFailed = err;
+  //     },
+  //   });
+  // }
 
   onSubmit(): void {
     this.authService.verifyOtp(this.userData.email, this.otpForm.value.otp);

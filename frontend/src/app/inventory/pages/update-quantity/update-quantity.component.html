@@ -3,7 +3,7 @@
         <h3 class="logo">PharmaChain</h3>
         <h5>Update Quantity</h5>
         <form class="fields w-75 d-flex flex-column gap-3" [formGroup]="updateQuantityForm" (submit)="onSubmit()">
-            <input type="text" placeholder="Batch Number" formControlName="batchNumber" class="p-2">
+            <h6 class="align-self-center">Batch Number: {{batchNumber}}</h6>
             <input type="number" placeholder="Quantity Added" formControlName="quantityAdded" class="p-2">
             <input type="number" placeholder="Quantity Subtracted" formControlName="quantitySubtracted" class="p-2">
             

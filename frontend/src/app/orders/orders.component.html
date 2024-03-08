@@ -17,7 +17,8 @@
                     <h6 class="card-subtitle mb-2 text-muted">Order Status: <span
                             class="text-black">{{order.orderStatus}}</span></h6>
                     <div class="d-flex justify-content-end gap-3">
-                        <button class="btn btn-primary" (click)="updateStatus(order.orderID)">Update</button>
+                        <button *ngIf="userData.role !== 'retailer' " class="btn btn-primary"
+                            (click)="updateStatus(order.orderID)">Update</button>
                     </div>
                 </div>
             </div>

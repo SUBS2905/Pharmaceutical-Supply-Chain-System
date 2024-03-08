@@ -8,6 +8,11 @@ namespace PharmaceuticalSupplyChainSystem.Repositories.Interfaces
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Order> getOrderById(string orderId)
+        {
+            throw new NotImplementedException();
+        }
         public async Task<Order> addOrder(Order order)
         {
             throw new NotImplementedException();

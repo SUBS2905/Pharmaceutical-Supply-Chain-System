@@ -24,6 +24,18 @@ namespace PharmaceuticalSupplyChainSystem.Services
                 return null;
             }
         }
+        public async Task<Order> getOrderByOrderId(string orderId)
+        {
+            try
+            {
+                return await _orderRepository.getOrderById(orderId);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
         public async Task<Order> addOrder(Order order)
         {
             try

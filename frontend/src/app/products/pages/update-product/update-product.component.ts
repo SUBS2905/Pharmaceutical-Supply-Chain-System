@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/shared/services/product.service';
 
 @Component({
@@ -9,20 +10,27 @@ import { ProductService } from 'src/shared/services/product.service';
 })
 export class UpdateProductComponent implements OnInit {
   updateProductForm: FormGroup;
-  updateProductFailed = false;
+  productId: string;
+  // updateProductFailed = false;
 
   constructor(
     private fb: FormBuilder,
-    private productService: ProductService
+    private productService: ProductService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.initializeForm();
+
+    this.route.params.subscribe({
+      next: (params) => (this.productId = params['productId']),
+      error: (err) => console.log(err),
+    });
   }
 
   initializeForm(): void {
     this.updateProductForm = this.fb.group({
-      productID: ['', [Validators.required]],
+      // productID: ['', [Validators.required]],
       productName: ['', [Validators.required]],
       description: ['', [Validators.required]],
       formulation: ['', Validators.required],
@@ -39,12 +47,13 @@ export class UpdateProductComponent implements OnInit {
     if (this.updateProductForm.valid) {
       const formValue = this.updateProductForm.value;
 
+      formValue.productID = this.productId;
       formValue.ingredients = formValue.ingredients
-      .split(',')
-      .map((ingredient) => ingredient.trim());
+        .split(',')
+        .map((ingredient) => ingredient.trim());
 
-      console.log(formValue);
-      
+      // console.log(formValue);
+
       this.productService.updateProduct(formValue);
     } else {
       // console.log(this.addProductForm.value);
@@ -52,14 +61,14 @@ export class UpdateProductComponent implements OnInit {
     }
   }
 
-  onFailed(): void {
-    this.productService.error$.subscribe({
-      next: (err) => {
-        this.updateProductFailed = err;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
+  // onFailed(): void {
+  //   this.productService.error$.subscribe({
+  //     next: (err) => {
+  //       this.updateProductFailed = err;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 }

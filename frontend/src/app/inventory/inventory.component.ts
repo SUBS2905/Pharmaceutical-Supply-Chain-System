@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Inventory from 'src/shared/models/Inventory';
 import { AuthService } from 'src/shared/services/auth.service';
 import { InventoryService } from 'src/shared/services/inventory.service';
@@ -14,7 +15,8 @@ export class InventoryComponent implements OnInit {
 
   constructor(
     private inventoryService: InventoryService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -94,5 +96,10 @@ export class InventoryComponent implements OnInit {
 
   orderProduct(productID: string): void {
     this.inventoryService.orderProduct(productID);
+  }
+
+  onUpdate(batchNumber: string): void{
+    const url = `/inventory/update/${batchNumber}`
+    this.router.navigateByUrl(url);
   }
 }

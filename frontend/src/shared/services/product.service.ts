@@ -16,7 +16,7 @@ export class ProductService {
     `Bearer ${this.jwt}`
   );
   products$ = new BehaviorSubject<Product[]>(null);
-  error$ = new BehaviorSubject<boolean>(false);
+  // error$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,
@@ -47,7 +47,8 @@ export class ProductService {
           this.router.navigateByUrl('/products');
         },
         error: (err) => {
-          this.error$.next(true);
+          // this.error$.next(true);
+          alert('Unable to add product');
           console.error(err);
         },
       });
@@ -67,7 +68,8 @@ export class ProductService {
         this.products$.next(updatedState);
       },
       error: (err) => {
-        this.error$.next(true);
+        // this.error$.next(true);
+        alert('Unable to delete product')
         console.error(err);
       },
     });
@@ -85,7 +87,7 @@ export class ProductService {
         error: (err) => {
           console.error(err);
           alert('Product does not exist');
-          this.error$.next(true);
+          // this.error$.next(true);
         },
       });
   }

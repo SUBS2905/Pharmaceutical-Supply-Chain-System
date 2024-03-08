@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorComponent } from 'src/shared/components/error/error.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
+  {
+    path: 'shipments',
+    loadChildren: () =>
+      import('./shipments/shipments.module').then((m) => m.ShipmentsModule),
+  },
+  {
+    path: 'recalls',
+    loadChildren: () =>
+      import('./recalls/recalls.module').then((m) => m.RecallsModule),
+  },
+  { path: '**', component: ErrorComponent },
 ];
 
 @NgModule({

@@ -9,7 +9,7 @@ import { ProductService } from 'src/shared/services/product.service';
 })
 export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
-  addProductFailed = false;
+  // addProductFailed = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +42,7 @@ export class AddProductComponent implements OnInit {
       formValue.ingredients = formValue.ingredients
         .split(',')
         .map((ingredient) => ingredient.trim());
+
       // console.log(formValue);
 
       this.productService.addProduct(formValue);
@@ -51,14 +52,14 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  onFailed(): void {
-    this.productService.error$.subscribe({
-      next: (err) => {
-        this.addProductFailed = err;
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
+  // onFailed(): void {
+  //   this.productService.error$.subscribe({
+  //     next: (err) => {
+  //       this.addProductFailed = err;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 }

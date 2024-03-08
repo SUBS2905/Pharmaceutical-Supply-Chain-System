@@ -1,0 +1,19 @@
+<section class="container d-flex justify-content-center align-items-center w-100 h-100">
+    <div class="wrapper py-4 d-flex flex-column align-items-center justify-content-around">
+        <h3 class="logo">PharmaChain</h3>
+        <h5>Add Shipment</h5>
+        <form class="fields w-75 d-flex flex-column gap-3" [formGroup]="addShipmentForm" (submit)="onSubmit()">
+            <input type="text" placeholder="Shipper ID" formControlName="shipperID" class="p-2">
+            <input type="text" placeholder="Shipper Name" formControlName="shipperName" class="p-2">
+            <input type="text" placeholder="Current Location" formControlName="currentLocation" class="p-2">
+            <input type="text" placeholder="Order ID(s) (comma-separated)" formControlName="orderIds" class="p-2">
+            <div class="d-flex flex-column">
+                <label>Estimated Delivery Date: </label>
+                <input type="date" formControlName="estimatedDelivery">
+            </div>
+            <div class="align-self-end">
+                <button type="submit" class="p-2">Add</button>
+            </div>
+        </form>
+    </div>
+</section>

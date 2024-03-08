@@ -16,7 +16,6 @@ export class OrderService {
     `Bearer ${this.jwt}`
   );
 
-  error$ = new BehaviorSubject<boolean>(false);
   order$ = new BehaviorSubject<Order>(null);
 
   constructor(
@@ -50,7 +49,6 @@ export class OrderService {
           this.router.navigateByUrl('/orders');
         },
         error: (err) => {
-          this.error$.next(true);
           console.log(err);
           alert('Unable to place order');
         },

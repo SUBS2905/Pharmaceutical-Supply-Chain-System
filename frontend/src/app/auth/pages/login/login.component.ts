@@ -12,7 +12,7 @@ import { AuthService } from 'src/shared/services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   userData: User;
-  loginFailed = false;
+  // loginFailed = false;
   showPassword = false;
 
   constructor(
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.isFailed();
+    // this.isFailed();
   }
 
   initializeForm(): void {
@@ -47,8 +47,6 @@ export class LoginComponent implements OnInit {
     this.authService.userSubject.subscribe({
       next: (user) => {
         this.userData = user;
-        //how to prevent navigation if incorrect credentials
-        if (!this.loginFailed) this.router.navigateByUrl('/auth/otp');
       },
       error: (err) => {
         console.error(err);
@@ -56,14 +54,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  isFailed(): void {
-    this.authService.errorSubject.subscribe({
-      next: (err) => {
-        this.loginFailed = err;
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
-  }
+  // isFailed(): void {
+  //   this.authService.errorSubject.subscribe({
+  //     next: (err) => {
+  //       this.loginFailed = err;
+  //     },
+  //     error: (err) => {
+  //       console.error(err);
+  //     },
+  //   });
+  // }
 }

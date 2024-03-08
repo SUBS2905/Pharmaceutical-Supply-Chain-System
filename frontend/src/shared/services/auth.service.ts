@@ -17,7 +17,6 @@ export class AuthService {
   private getUserEndpoint = `${this.authEndpoint}/user`;
 
   userSubject = new BehaviorSubject<User>(null);
-  errorSubject = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,
@@ -42,10 +41,13 @@ export class AuthService {
 
     this.http.post<User>(this.registerEndpoint, body).subscribe({
       next: (res) => {
-        // console.log(res);
         this.userSubject.next(res);
+        this.router.navigateByUrl('/auth/login')
       },
-      error: (err) => console.log(err),
+      error: (err) => {
+        alert('User already exists');
+        console.log(err);
+      },
     });
   }
 
@@ -54,28 +56,29 @@ export class AuthService {
     this.http.post<User>(this.loginEndpoint, body).subscribe({
       next: (res) => {
         this.userSubject.next(res);
+        this.router.navigateByUrl('/auth/otp');
       },
       error: (err) => {
+        alert('Incorrect Credentials');
         console.error(err);
-        this.errorSubject.next(true);
       },
     });
   }
 
   verifyOtp(email: string, otp: string): void {
     const body = { email, otp };
-    console.log(body);
+    // console.log(body);
 
     this.http.post<LoginResponse>(this.otpEndpoint, body).subscribe({
       next: (res) => {
         this.userSubject.next(res.user);
         this.cookieService.set('jwt', res.token, 2, '/');
         this.cookieService.set('session', res.user.userID, 2, '/');
-        alert('OTP verified!');
         this.router.navigateByUrl('/');
       },
       error: (err) => {
-        this.errorSubject.next(true);
+        // this.errorSubject.next(true);
+        alert('Incorrect OTP');
         console.error(err);
       },
     });

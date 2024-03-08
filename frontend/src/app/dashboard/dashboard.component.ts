@@ -125,8 +125,6 @@ export class DashboardComponent implements OnInit {
   getProducts(): void {
     this.productService.products$.subscribe({
       next: (res) => {
-        console.log(res);
-        
         this.productData = res;
       },
       error: (err) => {

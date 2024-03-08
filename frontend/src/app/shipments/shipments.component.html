@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<section class="container my-5">
+    <div class="title d-flex align-items-center justify-content-between">
+        <h3>Shipments</h3>
+        <button *ngIf=" userRole === 'admin' || userRole === 'distributor' "
+            class="btn btn-primary" routerLink="/shipments/add">Add New Shipment</button>
+    </div>
+    <div class="row">
+        <div *ngFor="let shipment of shipments" class="col-md-6 my-3">
+            <div class="card" style="width: 100%;">
+                <div class="card-body d-flex flex-column gap-2">
+                    <h5 class="card-title">{{shipment.trackingNumber}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Shipper ID: <span
+                            class="text-black">{{shipment.shipperID}}</span></h6>
+                    <small class="card-text text-muted">Shipper Name: <span
+                            class="text-black">{{shipment.shipperName}}</span></small>
+                    <small class="card-text text-muted">Current Location: <span
+                            class="text-black">{{shipment.currentLocation}}</span></small>
+                    <small class="card-text text-muted">Estimated Delivery Date: <span
+                            class="text-black">{{extractDate(shipment.estimatedDelivery)}}</span></small>
+                    <h6 class="card-subtitle mb-2 text-muted">Order ID(s): </h6>
+                    <small class="text-black" *ngFor="let orderId of shipment.orders">
+                        {{orderId.orderID}}
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -9,7 +9,6 @@
                 <option value="shipped">Shipped</option>
                 <option value="delivered">Delivered</option>
             </select>
-            <p *ngIf="updateStatusFailed" class="error align-self-center text-danger">Status updation Failed</p>
             <div class="align-self-end w-50">
                 <button type="submit" class="p-2" (click)="onSubmit()">Update Status</button>
             </div>

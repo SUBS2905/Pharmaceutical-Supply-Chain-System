@@ -10,6 +10,7 @@ import { AuthService } from 'src/shared/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   userRole: string;
+
   constructor(
     private authService: AuthService,
     private cookieService: CookieService,
